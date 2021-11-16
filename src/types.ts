@@ -102,6 +102,10 @@ export interface EmbedNodeRendererProps
 }
 
 export interface DefaultNodeRendererProps {
+  renderers: NodeRenderer;
+  references?: EmbedReferences;
+  context?: unknown;
+  disabledElements?: ElementTypeMap;
   classNameOverrides?: ClassNameOverrides;
   additionalClassName?: string;
   className?: string;

@@ -1,4 +1,3 @@
-export * from "./RichText";
 export * from "./Renderers";
 export * from "./constants";
 export * from "./RenderElement";
@@ -9,3 +8,4 @@ export * from "./RenderText";
 export * from "./types";
 export * from "./utils";
 export * from "./RenderAsset";
+export * from "./RichText";

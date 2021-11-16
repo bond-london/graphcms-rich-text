@@ -17,5 +17,5 @@
     "importHelpers": true,
     "removeComments": true
   },
-  "include": ["src", "test"]
+  "include": ["src"]
 }
