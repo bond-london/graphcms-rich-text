@@ -208,6 +208,25 @@ describe("@bond-london/graphcms-rich-text", () => {
     expect(container).toMatchSnapshot();
   });
 
+  it("renders inline content with conditional renderer", () => {
+    const { container } = render(
+      <RichText
+        content={inlineContent}
+        renderers={{
+          code: (props) => (
+            <DefaultRenderer
+              {...props}
+              element="code"
+              style={{ fontStyle: "italic" }}
+            />
+          ),
+        }}
+      />
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
   it("renders inline content with custom renderers", () => {
     const { container } = render(
       <RichText
