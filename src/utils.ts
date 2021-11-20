@@ -5,7 +5,13 @@ import {
   Text,
   Node,
 } from "@graphcms/rich-text-types";
-import { GenericRichTextNode, RTFContent, RTFReferences } from "./types";
+import React from "react";
+import {
+  ElementsRendererProps,
+  GenericRichTextNode,
+  RTFContent,
+  RTFReferences,
+} from "./types";
 
 function cleanupTextString(text: string) {
   return text.replace(/\s+/g, " ");
@@ -137,4 +143,58 @@ export function getRTFReferences(
   node: GenericRichTextNode | undefined
 ): RTFReferences | undefined {
   return node?.references;
+}
+
+export type TableCell = Node[];
+export type TableRow = TableCell[];
+
+export interface TableInformation {
+  header: TableRow;
+  body: TableRow[];
+}
+
+function getTableRow(node: ElementNode): TableRow | undefined {
+  switch (node.type) {
+    case "table_row":
+      return node.children
+        .filter(isElement)
+        .filter((n) => n.type === "table_cell")
+        .map((n) => n.children);
+    default:
+      throw new Error(`Cannot find table row: ${node.type}`);
+  }
+}
+
+function getTable(node: ElementNode[]): TableInformation {
+  const rows = node
+    .filter((n) => {
+      switch (n.type) {
+        case "table_head":
+        case "table_body":
+          return true;
+        default:
+          return false;
+      }
+    })
+    .flatMap((e) => e.children.filter(isElement).map(getTableRow))
+    .filter((e) => e);
+
+  const [header, ...body] = rows as TableRow[];
+  return { header, body };
+}
+
+export function buildTableInformation(
+  contents: ElementNode[]
+): TableInformation {
+  return getTable(contents);
+}
+
+export function buildTableInformationFromChildren(
+  children: React.ReactNode
+): TableInformation {
+  const element = children as React.ReactElement<ElementsRendererProps>;
+  const { props } = element;
+  const { contents } = props;
+  const table = buildTableInformation(contents as ElementNode[]);
+  return table;
 }

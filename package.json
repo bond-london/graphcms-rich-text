@@ -24,12 +24,9 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "build:ts": "babel src --out-dir dist --extensions .ts,.tsx",
-    "build:defs": "tsc -p tsconfig.build.json --declaration --outDir dist --emitDeclarationOnly",
-    "dev:ts": "babel -w src --out-dir dist --extensions .ts,.tsx",
-    "dev:defs": "tsc -p tsconfig.build.json -w --declaration --outDir dist --emitDeclarationOnly",
-    "dev": "run-p dev:ts dev:defs",
-    "prepare": "cross-env NODE_ENV=production yarn run lint && yarn run build:ts && yarn run build:defs && husky install",
+    "build": "tsc -p tsconfig.build.json --outDir dist",
+    "dev": "tsc -p tsconfig.build.json -w --outDir dist",
+    "prepare": "cross-env NODE_ENV=production yarn run lint && yarn run build && husky install",
     "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx}\"",
     "lint": "eslint --max-warnings 0 \"**/*.{js,jsx,ts,tsx}\"",
     "release": "release-it",
