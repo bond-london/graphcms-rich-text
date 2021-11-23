@@ -1,3 +1,10 @@
+### [0.2.2](https://github.com/bond-london/graphcms-rich-text/compare/v0.2.1...v0.2.2) (2021-11-23)
+
+
+### Bug Fixes
+
+* tidy and remove babel ([af0d764](https://github.com/bond-london/graphcms-rich-text/commit/af0d764efff87f39f981515929de5ad6dafbee8e))
+
 ### [0.2.1](https://github.com/bond-london/graphcms-rich-text/compare/v0.2.0...v0.2.1) (2021-11-22)
 
 ## [0.2.0](https://github.com/bond-london/graphcms-rich-text/compare/v0.1.2...v0.2.0) (2021-11-20)
