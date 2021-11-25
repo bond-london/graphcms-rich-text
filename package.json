@@ -1,5 +1,6 @@
 {
   "name": "@bond-london/graphcms-rich-text",
+  "sideEffects": false,
   "version": "0.2.2",
   "description": "Rich text components",
   "main": "dist/index.js",

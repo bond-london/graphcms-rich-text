@@ -1,4 +1,5 @@
 import {
+  AssetReference,
   ClassProps,
   EmbedElement,
   EmbedReferences,
@@ -6,13 +7,14 @@ import {
   ImageProps,
   LinkProps,
   Node,
+  Reference,
   RichTextContent,
   VideoProps,
 } from "@graphcms/rich-text-types";
 import React, { AriaRole, CSSProperties } from "react";
 
 export type RTFContent = RichTextContent;
-export type RTFReferences = EmbedReferences;
+export type RTFReferences = ReadonlyArray<Reference | AssetReference>;
 
 export interface GenericRichTextNode {
   readonly raw?: unknown;
@@ -20,7 +22,7 @@ export interface GenericRichTextNode {
   readonly markdown?: string;
   readonly text?: string;
   readonly json?: RTFContent;
-  readonly references?: EmbedReferences;
+  readonly references?: RTFReferences;
 }
 
 export type EmbedNodeRenderer = (props: unknown) => JSX.Element;
