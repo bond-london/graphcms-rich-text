@@ -1,3 +1,10 @@
+### [0.2.4](https://github.com/bond-london/graphcms-rich-text/compare/v0.2.3...v0.2.4) (2021-11-27)
+
+
+### Bug Fixes
+
+* better element rendering with contents ([3193b4b](https://github.com/bond-london/graphcms-rich-text/commit/3193b4b489148d40da563cc532c44db13ec01240))
+
 ### [0.2.3](https://github.com/bond-london/graphcms-rich-text/compare/v0.2.2...v0.2.3) (2021-11-25)
 
 
