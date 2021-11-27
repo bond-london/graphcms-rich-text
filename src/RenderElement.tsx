@@ -43,7 +43,7 @@ export const RenderElement: React.FC<NodeRendererProps<ElementNode>> = (
   const renderer = props.renderers[rendererKey];
   const NodeRenderer = renderer as React.ElementType;
   return (
-    <NodeRenderer {...rest} {...elementProps}>
+    <NodeRenderer {...rest} {...elementProps} contents={element.children}>
       <RenderElements {...rest} contents={element.children} />
     </NodeRenderer>
   );
