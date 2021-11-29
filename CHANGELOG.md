@@ -1,3 +1,10 @@
+## [0.3.0](https://github.com/bond-london/graphcms-rich-text/compare/v0.2.4...v0.3.0) (2021-11-29)
+
+
+### Bug Fixes
+
+* better handling of modules ([cbe4c15](https://github.com/bond-london/graphcms-rich-text/commit/cbe4c1571f3daa6433c1e1754ca923db556d3690))
+
 ### [0.2.4](https://github.com/bond-london/graphcms-rich-text/compare/v0.2.3...v0.2.4) (2021-11-27)
 
 
