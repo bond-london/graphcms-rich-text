@@ -2,7 +2,6 @@ import {
   AssetReference,
   ClassProps,
   EmbedElement,
-  EmbedReferences,
   IFrameProps,
   ImageProps,
   LinkProps,
@@ -71,7 +70,7 @@ export type ElementTypeMap = {
 };
 
 export interface BaseRendererProps {
-  references?: EmbedReferences;
+  references?: RTFReferences;
   context?: unknown;
   classNameOverrides?: ClassNameOverrides;
   disabledElements?: ElementTypeMap;
@@ -80,6 +79,14 @@ export interface BaseRendererProps {
     elementName: string,
     htmlElementName: keyof NodeRenderer
   ) => JSX.Element;
+}
+
+export interface RTFProps extends BaseRendererProps {
+  content?: RTFContent;
+  renderers?: Partial<NodeRenderer>;
+  className?: string;
+  fixedParagraphClassName?: string;
+  fixedHeadingClassName?: string;
 }
 
 export interface RichTextProps extends BaseRendererProps {
@@ -105,7 +112,7 @@ export interface EmbedNodeRendererProps
 
 export interface DefaultNodeRendererProps {
   renderers: NodeRenderer;
-  references?: EmbedReferences;
+  references?: RTFReferences;
   context?: unknown;
   disabledElements?: ElementTypeMap;
   classNameOverrides?: ClassNameOverrides;

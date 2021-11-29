@@ -9,3 +9,4 @@ export * from "./types";
 export * from "./utils";
 export * from "./RenderAsset";
 export * from "./RichText";
+export * from "./RTF";
