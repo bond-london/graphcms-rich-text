@@ -87,11 +87,18 @@ export interface RTFProps extends BaseRendererProps {
   className?: string;
   fixedParagraphClassName?: string;
   fixedHeadingClassName?: string;
+  projectRenderers?: Partial<NodeRenderer>;
+  projectClassNameOverrides?: ClassNameOverrides;
 }
 
 export interface RichTextProps extends BaseRendererProps {
   content: RTFContent;
   renderers?: Partial<NodeRenderer>;
+}
+
+export interface InternalRichTextProps extends BaseRendererProps {
+  content: RTFContent;
+  renderers: NodeRenderer;
 }
 
 export interface ElementsRendererProps extends BaseRendererProps {

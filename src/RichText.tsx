@@ -7,12 +7,28 @@ import {
   NodeRenderer,
   RenderElements,
 } from ".";
-import { RichTextProps } from "./types";
+import { InternalRichTextProps, RichTextProps } from "./types";
+
+export const InternalRichText: React.FC<InternalRichTextProps> = ({
+  content,
+  renderers,
+  removeEmptyElements,
+  ...rest
+}) => {
+  const elements = getElements(content);
+  return (
+    <RenderElements
+      {...rest}
+      renderers={renderers}
+      removeEmptyElements={removeEmptyElements}
+      contents={elements}
+    />
+  );
+};
 
 export const RichText: React.FC<RichTextProps> = ({
   renderers,
   removeEmptyElements,
-  content,
   ...rest
 }) => {
   const realRemoveEmptyElements: ElementTypeMap = useMemo(
@@ -25,14 +41,11 @@ export const RichText: React.FC<RichTextProps> = ({
     [renderers]
   );
 
-  const elements = getElements(content);
-
   return (
-    <RenderElements
+    <InternalRichText
       {...rest}
       renderers={realRenderers}
       removeEmptyElements={realRemoveEmptyElements}
-      contents={elements}
     />
   );
 };
