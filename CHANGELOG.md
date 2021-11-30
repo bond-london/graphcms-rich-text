@@ -1,3 +1,10 @@
+## [0.4.0](https://github.com/bond-london/graphcms-rich-text/compare/v0.3.1...v0.4.0) (2021-11-30)
+
+
+### Bug Fixes
+
+* clean up rtf ([6f35b4f](https://github.com/bond-london/graphcms-rich-text/commit/6f35b4f7d4ac34d33a34a2e756b37056d5a4d97c))
+
 ### [0.3.1](https://github.com/bond-london/graphcms-rich-text/compare/v0.3.0...v0.3.1) (2021-11-29)
 
 ## [0.3.0](https://github.com/bond-london/graphcms-rich-text/compare/v0.2.4...v0.3.0) (2021-11-29)
