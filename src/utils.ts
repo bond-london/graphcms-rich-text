@@ -139,6 +139,19 @@ export function getRTF(
   }
 }
 
+export function tryGetRTF(
+  node: GenericRichTextNode | string | undefined,
+  clean = true
+): RTFContent | undefined {
+  const content = getRTF(node);
+  if (content) {
+    const cleanContent = clean ? cleanupRTF(content) : content;
+    if (!isEmptyRTFContent(cleanContent)) {
+      return cleanContent;
+    }
+  }
+}
+
 export function getRTFReferences(
   node: GenericRichTextNode | undefined
 ): RTFReferences | undefined {
