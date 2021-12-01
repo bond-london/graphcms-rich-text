@@ -1,3 +1,10 @@
+### [0.4.2](https://github.com/bond-london/graphcms-rich-text/compare/v0.4.1...v0.4.2) (2021-12-01)
+
+
+### Features
+
+* add trygetrtf to get clean content ([8dacc0b](https://github.com/bond-london/graphcms-rich-text/commit/8dacc0b77720732de9e7254ee0bacad49e77afe7))
+
 ### [0.4.1](https://github.com/bond-london/graphcms-rich-text/compare/v0.4.0...v0.4.1) (2021-11-30)
 
 ## [0.4.0](https://github.com/bond-london/graphcms-rich-text/compare/v0.3.1...v0.4.0) (2021-11-30)
