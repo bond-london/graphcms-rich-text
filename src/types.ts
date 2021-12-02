@@ -91,6 +91,8 @@ export interface RTFProps extends BaseRendererProps {
   projectClassNameOverrides?: ClassNameOverrides;
 }
 
+export type RealRTFProps = Omit<RTFProps, "content"> & { content: RTFContent };
+
 export interface RichTextProps extends BaseRendererProps {
   content: RTFContent;
   renderers?: Partial<NodeRenderer>;

@@ -7,8 +7,8 @@ import {
   ElementTypeMap,
   isEmptyRTFContent,
   NodeRenderer,
+  RealRTFProps,
   RichText,
-  RTFContent,
   RTFProps,
 } from ".";
 
@@ -21,9 +21,7 @@ const headingClasses: (keyof ClassNameOverrides)[] = [
   "h6",
 ];
 
-export const RealRTF: React.FC<
-  Omit<RTFProps, "content"> & { content: RTFContent }
-> = ({
+export const RealRTF: React.FC<RealRTFProps> = ({
   projectClassNameOverrides,
   projectRenderers,
   classNameOverrides,
