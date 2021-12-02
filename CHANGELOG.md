@@ -1,3 +1,10 @@
+## [0.5.0](https://github.com/bond-london/graphcms-rich-text/compare/v0.4.2...v0.5.0) (2021-12-02)
+
+
+### Features
+
+* tidy up api ([2a4b493](https://github.com/bond-london/graphcms-rich-text/commit/2a4b493a3500466826b5c3a210542112e1a1e926))
+
 ### [0.4.2](https://github.com/bond-london/graphcms-rich-text/compare/v0.4.1...v0.4.2) (2021-12-01)
 
 
