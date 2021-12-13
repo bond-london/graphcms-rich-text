@@ -22,6 +22,7 @@ export const InternalRichText: React.FC<InternalRichTextProps> = ({
       renderers={renderers}
       removeEmptyElements={removeEmptyElements}
       contents={elements}
+      index={0}
     />
   );
 };

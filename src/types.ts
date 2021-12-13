@@ -106,11 +106,14 @@ export interface InternalRichTextProps extends BaseRendererProps {
 export interface ElementsRendererProps extends BaseRendererProps {
   contents?: Array<Node>;
   renderers: NodeRenderer;
+  index: number;
 }
 
 export interface NodeRendererProps<N = Node> extends BaseRendererProps {
   node: N;
   renderers: NodeRenderer;
+  index: number;
+  parentIndex: number;
 }
 
 export interface EmbedNodeRendererProps
