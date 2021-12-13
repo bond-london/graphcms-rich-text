@@ -1,3 +1,10 @@
+### [0.5.1](https://github.com/bond-london/graphcms-rich-text/compare/v0.5.0...v0.5.1) (2021-12-13)
+
+
+### Bug Fixes
+
+* various tweaks ([cc2a6d8](https://github.com/bond-london/graphcms-rich-text/commit/cc2a6d886ae090e966bbe3a49933cfeb8fe6654e))
+
 ## [0.5.0](https://github.com/bond-london/graphcms-rich-text/compare/v0.4.2...v0.5.0) (2021-12-02)
 
 
