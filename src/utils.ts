@@ -59,24 +59,29 @@ export function cleanupRTF(content: RTFContent): RTFContent {
   return newElements as ElementNode[];
 }
 
-function isNotEmpty(child: ElementNode | Text): boolean {
-  if (isText(child)) {
-    return !isEmptyText(child.text);
+export function nodeIsNotEmpty(node: Node): boolean {
+  if (isText(node)) {
+    return !isEmptyText(node.text);
   }
 
-  if (isElement(child)) {
-    const nonEmptyChildren = child.children.filter(isNotEmpty);
+  if (isElement(node)) {
+    const nonEmptyChildren = node.children.filter(nodeIsNotEmpty);
     return nonEmptyChildren.length > 0;
   }
 
   return false;
 }
 
+export function nodesAreNotEmpty(nodes: Node[]): boolean {
+  const nonEmpty = nodes.filter(nodeIsNotEmpty);
+  return nonEmpty.length > 0;
+}
+
 export function elementIsEmpty({ children }: ElementNode): boolean {
   // Checks if the children array has more than one element.
   // It may have a link inside, that's why we need to check this condition.
   if (children.length > 1) {
-    const nonEmptyChildren = children.filter(isNotEmpty);
+    const nonEmptyChildren = children.filter(nodeIsNotEmpty);
     return nonEmptyChildren.length === 0;
   }
 

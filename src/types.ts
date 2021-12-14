@@ -70,18 +70,37 @@ export type ElementTypeMap = {
 };
 
 export interface BaseRendererProps {
+  renderers: NodeRenderer;
   references?: RTFReferences;
   context?: unknown;
-  classNameOverrides?: ClassNameOverrides;
   disabledElements?: ElementTypeMap;
+  classNameOverrides?: ClassNameOverrides;
   removeEmptyElements?: ElementTypeMap;
   renderDisabledElement?: (
     elementName: string,
     htmlElementName: keyof NodeRenderer
   ) => JSX.Element;
+  contents?: Array<Node>;
 }
 
-export interface RTFProps extends BaseRendererProps {
+export interface DefaultNodeRendererProps {
+  renderers: NodeRenderer;
+  references?: RTFReferences;
+  context?: unknown;
+  disabledElements?: ElementTypeMap;
+  classNameOverrides?: ClassNameOverrides;
+  removeEmptyElements?: ElementTypeMap;
+  additionalClassName?: string;
+  className?: string;
+  style?: CSSProperties;
+  role?: AriaRole;
+  children: React.ReactNode;
+  index: number;
+  parentIndex: number;
+  contents?: Array<Node>;
+}
+
+export interface RTFProps extends Omit<BaseRendererProps, "renderers"> {
   content?: RTFContent;
   renderers?: Partial<NodeRenderer>;
   className?: string;
@@ -93,7 +112,7 @@ export interface RTFProps extends BaseRendererProps {
 
 export type RealRTFProps = Omit<RTFProps, "content"> & { content: RTFContent };
 
-export interface RichTextProps extends BaseRendererProps {
+export interface RichTextProps extends Omit<BaseRendererProps, "renderers"> {
   content: RTFContent;
   renderers?: Partial<NodeRenderer>;
 }
@@ -104,7 +123,6 @@ export interface InternalRichTextProps extends BaseRendererProps {
 }
 
 export interface ElementsRendererProps extends BaseRendererProps {
-  contents?: Array<Node>;
   renderers: NodeRenderer;
   index: number;
 }
@@ -122,18 +140,6 @@ export interface EmbedNodeRendererProps
   nodeType: string;
 }
 
-export interface DefaultNodeRendererProps {
-  renderers: NodeRenderer;
-  references?: RTFReferences;
-  context?: unknown;
-  disabledElements?: ElementTypeMap;
-  classNameOverrides?: ClassNameOverrides;
-  additionalClassName?: string;
-  className?: string;
-  style?: CSSProperties;
-  role?: AriaRole;
-  children: React.ReactNode;
-}
 export type DefaultNodeRenderer = (
   props: DefaultNodeRendererProps
 ) => JSX.Element;
