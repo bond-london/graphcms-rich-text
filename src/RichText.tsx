@@ -3,7 +3,6 @@ import {
   defaultRemoveEmpty,
   defaultRenderers,
   ElementTypeMap,
-  getElements,
   NodeRenderer,
   RenderElements,
 } from ".";
@@ -15,14 +14,14 @@ export const InternalRichText: React.FC<InternalRichTextProps> = ({
   removeEmptyElements,
   ...rest
 }) => {
-  const elements = getElements(content);
   return (
     <RenderElements
       {...rest}
       renderers={renderers}
       removeEmptyElements={removeEmptyElements}
-      contents={elements}
+      contents={content}
       index={0}
+      parentIndex={0}
     />
   );
 };

@@ -4,8 +4,10 @@ import {
   isText,
   Text,
   Node,
+  EmbedElement,
 } from "@graphcms/rich-text-types";
 import React from "react";
+import { CleanedRTF } from ".";
 import {
   ElementsRendererProps,
   GenericRichTextNode,
@@ -17,12 +19,54 @@ function cleanupTextString(text: string) {
   return text.replace(/\s+/g, " ");
 }
 
+export function cleanupElementNode(
+  elementNode: ElementNode
+): ElementNode | undefined {
+  const { children, ...rest } = elementNode;
+  const newChildren: (ElementNode | Text)[] = [];
+  children.forEach((child) => {
+    if (isText(child)) {
+      if (!isEmptyText(child.text)) {
+        newChildren.push({ ...child, text: cleanupTextString(child.text) });
+      }
+    } else if (isElement(child)) {
+      const newChild = cleanupElementNode(child);
+      if (newChild) {
+        newChildren.push(newChild);
+      }
+    }
+  });
+  if (newChildren.length) {
+    return { ...rest, children: newChildren };
+  }
+
+  if (isEmbed(elementNode)) {
+    return { ...rest, children: [] };
+  }
+}
+
+export function cleanupRTFContent(content: RTFContent): CleanedRTF {
+  const elements = Array.isArray(content) ? content : content.children;
+  const newElements: ElementNode[] = [];
+  elements.forEach((element) => {
+    const cleanedElement = cleanupElementNode(element);
+    if (cleanedElement) {
+      newElements.push(cleanedElement);
+    }
+  });
+
+  return newElements;
+}
+
 export function isEmptyText(text: string): boolean {
   return text.trim().length === 0;
 }
 
 function cleanupElement(element: ElementNode): ElementNode | undefined {
   const { children, ...rest } = element;
+  if (isEmbed(element)) {
+    return { ...rest, children: [] };
+  }
   if (elementIsEmpty(element)) {
     return;
   }
@@ -36,6 +80,9 @@ function cleanupText(text: Text): Text {
 
 function cleanupNode(node: Node): Node | undefined {
   if (isText(node)) {
+    if (isEmptyText(node.text)) {
+      return;
+    }
     return cleanupText(node);
   }
   if (isElement(node)) {
@@ -59,12 +106,19 @@ export function cleanupRTF(content: RTFContent): RTFContent {
   return newElements as ElementNode[];
 }
 
+export function isEmbed(node: Node): node is EmbedElement {
+  return isElement(node) && node.type === "embed";
+}
+
 export function nodeIsNotEmpty(node: Node): boolean {
   if (isText(node)) {
     return !isEmptyText(node.text);
   }
 
   if (isElement(node)) {
+    if (isEmbed(node)) {
+      return !!node.nodeId;
+    }
     const nonEmptyChildren = node.children.filter(nodeIsNotEmpty);
     return nonEmptyChildren.length > 0;
   }
@@ -154,6 +208,14 @@ export function tryGetRTF(
     if (!isEmptyRTFContent(cleanContent)) {
       return cleanContent;
     }
+  }
+}
+
+export function getCleanedRTF(
+  node: GenericRichTextNode | undefined
+): CleanedRTF | undefined {
+  if (node) {
+    return node.cleaned;
   }
 }
 

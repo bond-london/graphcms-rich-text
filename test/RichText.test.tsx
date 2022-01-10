@@ -6,6 +6,8 @@ import React from "react";
 import { render } from "@testing-library/react";
 
 import {
+  cleanupResult,
+  cleanupSrc,
   defaultContent as content,
   embedAssetContent,
   emptyContent,
@@ -16,7 +18,13 @@ import {
   simpleH1Content,
   videoContent,
 } from "./content";
-import { DefaultRenderer, RichText, RTFContent } from "../src";
+import {
+  cleanupRTF,
+  cleanupRTFContent,
+  DefaultRenderer,
+  RichText,
+  RTFContent,
+} from "../src";
 import { EmbedProps } from "@graphcms/rich-text-types";
 
 describe("@bond-london/graphcms-rich-text", () => {
@@ -32,6 +40,16 @@ describe("@bond-london/graphcms-rich-text", () => {
         </p>
       </div>
     `);
+  });
+
+  it("cleans up empty content ok", () => {
+    const cleanedRtf = cleanupRTF(cleanupSrc);
+    expect(cleanedRtf).toMatchObject(cleanupResult);
+  });
+
+  it("cleans up empty content node better", () => {
+    const cleanedRtf = cleanupRTFContent(cleanupSrc);
+    expect(cleanedRtf).toMatchObject(cleanupResult);
   });
 
   it("renders content with custom className", () => {
@@ -109,7 +127,9 @@ describe("@bond-london/graphcms-rich-text", () => {
       ],
     };
 
-    const { container } = render(<RichText content={contentObject} />);
+    const { container } = render(
+      <RichText content={cleanupRTFContent(contentObject)} />
+    );
 
     expect(container).toMatchInlineSnapshot(`
       <div>
@@ -505,7 +525,7 @@ describe("custom embeds and assets", () => {
         content={embedAssetContent}
         references={references}
         renderers={{
-          asset: {
+          embed_asset: {
             video: () => <div>custom video</div>,
             "video/mp4": () => <div>custom video/mp4</div>,
           },
@@ -515,12 +535,42 @@ describe("custom embeds and assets", () => {
 
     expect(container).toMatchInlineSnapshot(`
       <div>
+        <span
+          style="color: red;"
+        >
+          [RenderAsset]: No id found for embed node: ckrxv7b74g8il0d782lf66dup
+        </span>
+        <span
+          style="color: red;"
+        >
+          [RenderAsset]: No id found for embed node: ckrxv6otkg6ez0c8743xp9bzs
+        </span>
+        <span
+          style="color: red;"
+        >
+          [RenderAsset]: No id found for embed node: cknjbzowggjo90b91kjisy03a
+        </span>
         <div>
           custom video/mp4
         </div>
+        <span
+          style="color: red;"
+        >
+          [RenderAsset]: No id found for embed node: ckryzom5si5vw0d78d13bnwix
+        </span>
+        <span
+          style="color: red;"
+        >
+          [RenderAsset]: No id found for embed node: cks2osfk8t19a0b32vahjhn36
+        </span>
         <div>
           custom video
         </div>
+        <span
+          style="color: red;"
+        >
+          [RenderAsset]: No id found for embed node: model_example
+        </span>
       </div>
     `);
   });
@@ -555,8 +605,8 @@ describe("custom embeds and assets", () => {
       <RichText content={embedAssetContent} references={references} />
     );
 
-    expect(console.warn).toHaveBeenCalledTimes(4);
-    expect(container).toMatchInlineSnapshot(`<div />`);
+    expect(console.warn).toHaveBeenCalledTimes(0);
+    expect(container).toMatchSnapshot();
   });
 
   it(`shouldn't render embeds or assets if id is missing in references`, () => {
@@ -616,8 +666,8 @@ describe("custom embeds and assets", () => {
       <RichText content={content} references={references} />
     );
 
-    expect(console.error).toHaveBeenCalledTimes(3);
-    expect(container).toMatchInlineSnapshot(`<div />`);
+    expect(console.error).toHaveBeenCalledTimes(0);
+    expect(container).toMatchSnapshot();
   });
 
   it("should render custom embed assets", () => {
@@ -639,7 +689,7 @@ describe("custom embeds and assets", () => {
         content={embedAssetContent}
         references={references}
         renderers={{
-          asset: {
+          embed_asset: {
             video: () => <div>custom VIDEO</div>,
             image: () => <div>custom IMAGE</div>,
           },
@@ -649,12 +699,42 @@ describe("custom embeds and assets", () => {
 
     expect(container).toMatchInlineSnapshot(`
       <div>
+        <span
+          style="color: red;"
+        >
+          [RenderAsset]: No id found for embed node: ckrxv7b74g8il0d782lf66dup
+        </span>
+        <span
+          style="color: red;"
+        >
+          [RenderAsset]: No id found for embed node: ckrxv6otkg6ez0c8743xp9bzs
+        </span>
         <div>
           custom IMAGE
         </div>
         <div>
           custom VIDEO
         </div>
+        <span
+          style="color: red;"
+        >
+          [RenderAsset]: No id found for embed node: ckryzom5si5vw0d78d13bnwix
+        </span>
+        <span
+          style="color: red;"
+        >
+          [RenderAsset]: No id found for embed node: cks2osfk8t19a0b32vahjhn36
+        </span>
+        <span
+          style="color: red;"
+        >
+          [RenderAsset]: No id found for embed node: ckq2eek7c00ek0d83iakzoxuh
+        </span>
+        <span
+          style="color: red;"
+        >
+          [RenderAsset]: No id found for embed node: model_example
+        </span>
       </div>
     `);
   });
@@ -698,8 +778,8 @@ describe("custom embeds and assets", () => {
       <RichText content={content} references={references} />
     );
 
-    expect(console.error).toHaveBeenCalledTimes(2);
-    expect(container).toMatchInlineSnapshot(`<div />`);
+    expect(console.error).toHaveBeenCalledTimes(0);
+    expect(container).toMatchSnapshot();
   });
 
   it("should render custom embed models", () => {
@@ -728,9 +808,11 @@ describe("custom embeds and assets", () => {
         content={content}
         references={references}
         renderers={{
-          embed: {
+          embed_node: {
             Post: (props) => {
-              const embedProps = props as EmbedProps<{ title: string }>;
+              const embedProps = props as unknown as EmbedProps<{
+                title: string;
+              }>;
               const { title, nodeId } = embedProps;
               return (
                 <div className="post">
@@ -787,7 +869,7 @@ describe("custom embeds and assets", () => {
       <RichText content={content} references={references} />
     );
 
-    expect(console.warn).toHaveBeenCalledTimes(1);
-    expect(container).toMatchInlineSnapshot(`<div />`);
+    expect(console.warn).toHaveBeenCalledTimes(0);
+    expect(container).toMatchSnapshot();
   });
 });

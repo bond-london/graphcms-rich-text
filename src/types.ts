@@ -1,7 +1,7 @@
 import {
   AssetReference,
   ClassProps,
-  EmbedElement,
+  ElementNode,
   IFrameProps,
   ImageProps,
   LinkProps,
@@ -13,7 +13,11 @@ import {
 import React, { AriaRole, CSSProperties } from "react";
 
 export type RTFContent = RichTextContent;
-export type RTFReferences = ReadonlyArray<Reference | AssetReference>;
+export type RTFReferences = ReadonlyArray<
+  (Reference | AssetReference) & { remoteId?: string }
+>;
+
+export type CleanedRTF = ReadonlyArray<ElementNode>;
 
 export interface GenericRichTextNode {
   readonly raw?: unknown;
@@ -22,9 +26,8 @@ export interface GenericRichTextNode {
   readonly text?: string;
   readonly json?: RTFContent;
   readonly references?: RTFReferences;
+  readonly cleaned?: CleanedRTF;
 }
-
-export type EmbedNodeRenderer = (props: unknown) => JSX.Element;
 
 export interface AssetRenderer {
   [key: string]: EmbedNodeRenderer | undefined;
@@ -58,8 +61,9 @@ export interface NodeRenderer {
   table_cell: DefaultNodeRenderer;
   blockquote: DefaultNodeRenderer;
   code_block: DefaultNodeRenderer;
-  asset: AssetRenderer;
-  embed: AssetRenderer;
+  embed: EmbedNodeRenderer;
+  embed_asset: AssetRenderer;
+  embed_node: AssetRenderer;
 }
 
 export type ClassNameOverrides = {
@@ -80,7 +84,7 @@ export interface BaseRendererProps {
     elementName: string,
     htmlElementName: keyof NodeRenderer
   ) => JSX.Element;
-  contents?: Array<Node>;
+  contents?: ReadonlyArray<Node>;
 }
 
 export interface DefaultNodeRendererProps {
@@ -110,21 +114,22 @@ export interface RTFProps extends Omit<BaseRendererProps, "renderers"> {
   projectClassNameOverrides?: ClassNameOverrides;
 }
 
-export type RealRTFProps = Omit<RTFProps, "content"> & { content: RTFContent };
+export type RealRTFProps = Omit<RTFProps, "content"> & { content: CleanedRTF };
 
 export interface RichTextProps extends Omit<BaseRendererProps, "renderers"> {
-  content: RTFContent;
+  content: CleanedRTF;
   renderers?: Partial<NodeRenderer>;
 }
 
 export interface InternalRichTextProps extends BaseRendererProps {
-  content: RTFContent;
+  content: CleanedRTF;
   renderers: NodeRenderer;
 }
 
 export interface ElementsRendererProps extends BaseRendererProps {
   renderers: NodeRenderer;
   index: number;
+  parentIndex: number;
 }
 
 export interface NodeRendererProps<N = Node> extends BaseRendererProps {
@@ -134,11 +139,14 @@ export interface NodeRendererProps<N = Node> extends BaseRendererProps {
   parentIndex: number;
 }
 
-export interface EmbedNodeRendererProps
-  extends NodeRendererProps<EmbedElement> {
+export interface EmbedNodeRendererProps extends ElementsRendererProps {
+  type: "embed";
   nodeId: string;
   nodeType: string;
+  isInline?: boolean;
 }
+
+export type EmbedNodeRenderer = (props: EmbedNodeRendererProps) => JSX.Element;
 
 export type DefaultNodeRenderer = (
   props: DefaultNodeRendererProps

@@ -11,6 +11,7 @@ import {
   NodeRenderer,
   VideoNodeRendererProps,
 } from "..";
+import { EmbedRenderer } from "./EmbedRenderer";
 import { IFrameRenderer } from "./IFrameRenderer";
 
 export const defaultRenderers: NodeRenderer = {
@@ -41,20 +42,23 @@ export const defaultRenderers: NodeRenderer = {
   table_cell: (props) => <DefaultRenderer {...props} element="td" />,
   blockquote: (props) => <DefaultRenderer {...props} element="blockquote" />,
   code_block: (props) => <DefaultRenderer {...props} element="pre" />,
-  asset: {
-    audio: (props) => <AudioRenderer {...(props as AudioNodeRendererProps)} />,
+  embed: (props) => <EmbedRenderer {...props} />,
+  embed_asset: {
+    audio: (props) => (
+      <AudioRenderer {...(props as unknown as AudioNodeRendererProps)} />
+    ),
     image: (props) => (
       <ImageRenderer
-        {...(props as ImageNodeRendererProps)}
+        {...(props as unknown as ImageNodeRendererProps)}
         src={(props as AssetProps).url}
       />
     ),
     video: (props) => (
       <VideoRenderer
-        {...(props as VideoNodeRendererProps)}
+        {...(props as unknown as VideoNodeRendererProps)}
         src={(props as AssetProps).url}
       />
     ),
   },
-  embed: {},
+  embed_node: {},
 };

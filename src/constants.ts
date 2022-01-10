@@ -29,6 +29,7 @@ export const elementKeys: { [key: string]: keyof NodeRenderer } = {
   underline: "underline",
   code: "code",
   "code-block": "code_block",
+  embed: "embed",
 };
 
 export const defaultRemoveEmpty: ElementTypeMap = {

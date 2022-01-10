@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { calculateClassName } from ".";
 import { ImageNodeRendererProps } from "..";
 
@@ -14,9 +14,11 @@ export const ImageRenderer: React.FC<ImageNodeRendererProps> = ({
   style,
 }) => {
   if (!src) {
-    console.warn("[ImageRenderer]: src is required");
-    return <Fragment />;
+    return (
+      <span style={{ color: "red" }}>{"[ImageRenderer]: src is required"}</span>
+    );
   }
+
   return (
     <img
       loading="lazy"

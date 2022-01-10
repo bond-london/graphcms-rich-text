@@ -2,10 +2,10 @@
 import React, { useMemo } from "react";
 import {
   ClassNameOverrides,
+  cleanupRTFContent,
   defaultRemoveEmpty,
   defaultRenderers,
   ElementTypeMap,
-  isEmptyRTFContent,
   NodeRenderer,
   RealRTFProps,
   RichText,
@@ -76,11 +76,14 @@ export const RealRTF: React.FC<RealRTFProps> = ({
 };
 
 export const CoreRTF: React.FC<RTFProps> = ({ content, ...rest }) => {
-  if (!content) {
+  const cleanedRTF = useMemo(() => {
+    if (content) {
+      return cleanupRTFContent(content);
+    }
+  }, [content]);
+
+  if (!cleanedRTF) {
     return null;
   }
-  if (isEmptyRTFContent(content)) {
-    return null;
-  }
-  return <RealRTF content={content} {...rest} />;
+  return <RealRTF content={cleanedRTF} {...rest} />;
 };

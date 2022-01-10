@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { calculateClassName } from ".";
 import { VideoNodeRendererProps } from "..";
 
@@ -13,8 +13,9 @@ export const VideoRenderer: React.FC<VideoNodeRendererProps> = ({
   style,
 }) => {
   if (!src) {
-    console.warn("[VideoRenderer]: src is required");
-    return <Fragment />;
+    return (
+      <span style={{ color: "red" }}>{"[VideoRenderer]: src is required"}</span>
+    );
   }
 
   return (

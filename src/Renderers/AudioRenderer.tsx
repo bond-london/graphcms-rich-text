@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { calculateClassName } from ".";
 import { AudioNodeRendererProps } from "..";
 
@@ -10,8 +10,9 @@ export const AudioRenderer: React.FC<AudioNodeRendererProps> = ({
   style,
 }) => {
   if (!url) {
-    console.warn("[AudioRenderer]: url is required");
-    return <Fragment />;
+    return (
+      <span style={{ color: "red" }}>{"[AudioRenderer]: url is required"}</span>
+    );
   }
 
   const realStyle = style || {

@@ -1,62 +1,71 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { AssetReference } from "@graphcms/rich-text-types";
-import { elementKeys, EmbedNodeRendererProps, RenderElements } from ".";
+import { EmbedNodeRendererProps } from ".";
 
 export const RenderAsset: React.FC<EmbedNodeRendererProps> = (props) => {
-  const { nodeId, nodeType, node: element, ...rest } = props;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { nodeId, nodeType, children: _unusedChildren, ...rest } = props;
   const { references, renderers } = rest;
-  const { type, children, ...elementProps } = element;
 
   if (nodeType !== "Asset") {
     throw new Error(`Render asset can only render assets, not ${nodeType}`);
   }
 
-  const referenceValue = references?.filter((ref) => ref.id === nodeId)[0];
+  const referenceValue = references?.filter(
+    (ref) => ref.id === nodeId || ref.remoteId === nodeId
+  )[0];
   if (!referenceValue?.id) {
-    console.error(`[RenderAsset]: No id found for embed node: ${nodeId}`);
-    return <Fragment />;
+    return (
+      <span style={{ color: "red" }}>
+        {`[RenderAsset]: No id found for embed node: ${nodeId}`}
+      </span>
+    );
   }
 
   if (!referenceValue?.mimeType) {
-    console.error(`[RenderAsset]: No mimeType found for embed node: ${nodeId}`);
-    return <Fragment />;
+    return (
+      <span style={{ color: "red" }}>
+        {`[RenderAsset]: No mimeType found for embed node: ${nodeId}`}
+      </span>
+    );
   }
 
   if (!referenceValue?.url) {
-    console.error(`[RenderAsset]: No url found for embed node: ${nodeId}`);
-    return <Fragment />;
+    return (
+      <span style={{ color: "red" }}>
+        {`[RenderAsset]: No url found for embed node: ${nodeId}`}
+      </span>
+    );
   }
 
   let renderer;
 
   const { mimeType } = referenceValue as AssetReference;
-  const mimeTypeRenderer = renderers?.asset?.[mimeType];
+  const mimeTypeRenderer = renderers?.embed_asset?.[mimeType];
   if (mimeTypeRenderer) {
     renderer = mimeTypeRenderer;
   } else {
     const group = mimeType.split("/")[0];
     if (group) {
-      const mimeGroupRenderer = renderers?.asset?.[group];
+      const mimeGroupRenderer = renderers?.embed_asset?.[group];
       if (mimeGroupRenderer) {
         renderer = mimeGroupRenderer;
       } else {
-        console.warn(`[RenderAsset]: Unsupported mime type: ${mimeType}`);
-
-        return <Fragment />;
+        return (
+          <span style={{ color: "red" }}>
+            {`[RenderAsset]: Unsupported mime type: ${mimeType}`}
+          </span>
+        );
       }
     }
   }
 
-  const nodeRenderer = renderer || renderers?.[elementKeys[type]];
-
-  const NodeRenderer = nodeRenderer as React.ElementType;
+  const NodeRenderer = renderer as React.ElementType;
   if (NodeRenderer) {
-    return (
-      <NodeRenderer {...rest} {...elementProps} {...referenceValue}>
-        <RenderElements {...rest} contents={children} />
-      </NodeRenderer>
-    );
+    return <NodeRenderer {...rest} {...referenceValue} />;
   }
 
-  return <Fragment />;
+  return (
+    <span style={{ color: "red" }}>{`[RenderAsset]: No renderer found`}</span>
+  );
 };

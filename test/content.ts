@@ -1,6 +1,7 @@
 import { RichTextContent } from "@graphcms/rich-text-types";
+import { CleanedRTF } from "../src";
 
-export const defaultContent: RichTextContent = [
+export const defaultContent: CleanedRTF = [
   {
     type: "paragraph",
     children: [
@@ -12,7 +13,7 @@ export const defaultContent: RichTextContent = [
   },
 ];
 
-export const emptyContent: RichTextContent = [
+export const emptyContent: CleanedRTF = [
   {
     type: "heading-two",
     children: [
@@ -141,7 +142,7 @@ export const emptyContent: RichTextContent = [
   },
 ];
 
-export const simpleH1Content: RichTextContent = [
+export const simpleH1Content: CleanedRTF = [
   {
     type: "heading-one",
     children: [
@@ -152,7 +153,7 @@ export const simpleH1Content: RichTextContent = [
   },
 ];
 
-export const inlineContent: RichTextContent = [
+export const inlineContent: CleanedRTF = [
   {
     type: "paragraph",
     children: [
@@ -176,7 +177,7 @@ export const inlineContent: RichTextContent = [
   },
 ];
 
-export const iframeContent: RichTextContent = [
+export const iframeContent: CleanedRTF = [
   {
     type: "class",
     children: [
@@ -193,7 +194,7 @@ export const iframeContent: RichTextContent = [
   },
 ];
 
-export const imageContent: RichTextContent = [
+export const imageContent: CleanedRTF = [
   {
     src: "https://media.graphcms.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy",
     type: "image",
@@ -211,7 +212,7 @@ export const imageContent: RichTextContent = [
   },
 ];
 
-export const videoContent: RichTextContent = [
+export const videoContent: CleanedRTF = [
   {
     src: "https://media.graphcms.com/oWd7OYr5Q5KGRJW9ujRO",
     type: "video",
@@ -227,7 +228,7 @@ export const videoContent: RichTextContent = [
   },
 ];
 
-export const listContent: RichTextContent = [
+export const listContent: CleanedRTF = [
   {
     type: "bulleted-list",
     children: [
@@ -268,7 +269,7 @@ export const listContent: RichTextContent = [
   },
 ];
 
-export const embedAssetContent: RichTextContent = [
+export const embedAssetContent: CleanedRTF = [
   {
     type: "embed",
     nodeId: "ckrxv7b74g8il0d782lf66dup",
@@ -348,5 +349,82 @@ export const embedAssetContent: RichTextContent = [
       },
     ],
     nodeType: "Asset",
+  },
+];
+
+export const cleanupSrc: RichTextContent = {
+  children: [
+    {
+      type: "paragraph",
+      children: [
+        {
+          text: "This is some text and we show an embedded image that isn't used elsewhere.",
+        },
+      ],
+    },
+    {
+      type: "embed",
+      nodeId: "cky5t4zpsthsg0e04m1psw9cc",
+      children: [
+        {
+          text: "",
+        },
+      ],
+      nodeType: "Asset",
+    },
+    {
+      type: "paragraph",
+      children: [
+        {
+          text: "This also references a person ",
+        },
+        {
+          type: "embed",
+          nodeId: "cky5t6nwgt4za0c98fqhokyxt",
+          children: [
+            {
+              text: "",
+            },
+          ],
+          isInline: true,
+          nodeType: "Person",
+        },
+        {
+          text: "",
+        },
+      ],
+    },
+  ],
+};
+
+export const cleanupResult: CleanedRTF = [
+  {
+    type: "paragraph",
+    children: [
+      {
+        text: "This is some text and we show an embedded image that isn't used elsewhere.",
+      },
+    ],
+  },
+  {
+    type: "embed",
+    nodeId: "cky5t4zpsthsg0e04m1psw9cc",
+    children: [],
+    nodeType: "Asset",
+  },
+  {
+    type: "paragraph",
+    children: [
+      {
+        text: "This also references a person ",
+      },
+      {
+        type: "embed",
+        nodeId: "cky5t6nwgt4za0c98fqhokyxt",
+        isInline: true,
+        nodeType: "Person",
+        children: [],
+      },
+    ],
   },
 ];
