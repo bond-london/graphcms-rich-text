@@ -1,3 +1,10 @@
+## [1.0.0](https://github.com/bond-london/graphcms-rich-text/compare/v0.5.2...v1.0.0) (2022-01-10)
+
+
+### Features
+
+* handle embeds better ([c8579a3](https://github.com/bond-london/graphcms-rich-text/commit/c8579a3599e59a46060641e298f0fdacd7c27d27))
+
 ### [0.5.2](https://github.com/bond-london/graphcms-rich-text/compare/v0.5.1...v0.5.2) (2021-12-14)
 
 
