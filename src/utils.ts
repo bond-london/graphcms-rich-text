@@ -245,7 +245,7 @@ function getTableRow(node: ElementNode): TableRow | undefined {
   }
 }
 
-function getTable(node: ElementNode[]): TableInformation {
+function getTable(node: CleanedRTF): TableInformation {
   const rows = node
     .filter((n) => {
       switch (n.type) {
@@ -263,9 +263,7 @@ function getTable(node: ElementNode[]): TableInformation {
   return { header, body };
 }
 
-export function buildTableInformation(
-  contents: ElementNode[]
-): TableInformation {
+export function buildTableInformation(contents: CleanedRTF): TableInformation {
   return getTable(contents);
 }
 
