@@ -1,3 +1,10 @@
+### [1.0.1](https://github.com/bond-london/graphcms-rich-text/compare/v1.0.0...v1.0.1) (2022-01-13)
+
+
+### Bug Fixes
+
+* better table handling ([f9d7d6a](https://github.com/bond-london/graphcms-rich-text/commit/f9d7d6ae80029f872bd1444008eaa711bd428b5e))
+
 ## [1.0.0](https://github.com/bond-london/graphcms-rich-text/compare/v0.5.2...v1.0.0) (2022-01-10)
 
 
