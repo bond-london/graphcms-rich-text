@@ -1,3 +1,10 @@
+### [1.0.2](https://github.com/bond-london/graphcms-rich-text/compare/v1.0.1...v1.0.2) (2022-01-14)
+
+
+### Features
+
+* add rtfFromText ([dfbc219](https://github.com/bond-london/graphcms-rich-text/commit/dfbc2194d3c9ce9fe91be495f9e3f2d528f3709c))
+
 ### [1.0.1](https://github.com/bond-london/graphcms-rich-text/compare/v1.0.0...v1.0.1) (2022-01-13)
 
 
