@@ -179,6 +179,10 @@ export function isEmptyRTF(node: GenericRichTextNode | undefined): boolean {
   return isEmptyRTFContent(content);
 }
 
+export function rtfFromText(text: string): CleanedRTF {
+  return [{ type: "paragraph", children: [{ text }] }];
+}
+
 export function getRTF(
   node: GenericRichTextNode | string | undefined
 ): RTFContent | undefined {
