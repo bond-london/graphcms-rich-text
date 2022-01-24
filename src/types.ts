@@ -146,6 +146,12 @@ export interface EmbedNodeRendererProps extends ElementsRendererProps {
   isInline?: boolean;
 }
 
+export type CustomEmbedRendererProps<T = unknown> = ElementsRendererProps & {
+  nodeId: string;
+  nodeType: string;
+  isInline?: boolean;
+} & T;
+
 export type EmbedNodeRenderer = (props: EmbedNodeRendererProps) => JSX.Element;
 
 export type DefaultNodeRenderer = (

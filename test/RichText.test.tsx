@@ -21,11 +21,11 @@ import {
 import {
   cleanupRTF,
   cleanupRTFContent,
+  CustomEmbedRendererProps,
   DefaultRenderer,
   RichText,
   RTFContent,
 } from "../src";
-import { EmbedProps } from "@graphcms/rich-text-types";
 
 describe("@bond-london/graphcms-rich-text", () => {
   it("renders content", () => {
@@ -810,7 +810,7 @@ describe("custom embeds and assets", () => {
         renderers={{
           embed_node: {
             Post: (props) => {
-              const embedProps = props as unknown as EmbedProps<{
+              const embedProps = props as unknown as CustomEmbedRendererProps<{
                 title: string;
               }>;
               const { title, nodeId } = embedProps;
