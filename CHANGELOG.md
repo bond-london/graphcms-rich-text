@@ -1,3 +1,10 @@
+### [1.1.1](https://github.com/bond-london/graphcms-rich-text/compare/v1.1.0...v1.1.1) (2022-01-31)
+
+
+### Bug Fixes
+
+* added in table_header_cell ([565dbe9](https://github.com/bond-london/graphcms-rich-text/commit/565dbe979134b737496488d9d698085a7455beb8))
+
 ## [1.1.0](https://github.com/bond-london/graphcms-rich-text/compare/v1.0.3...v1.1.0) (2022-01-25)
 
 ### [1.0.3](https://github.com/bond-london/graphcms-rich-text/compare/v1.0.2...v1.0.3) (2022-01-24)
