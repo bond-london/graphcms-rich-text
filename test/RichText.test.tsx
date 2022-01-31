@@ -16,6 +16,7 @@ import {
   inlineContent,
   listContent,
   simpleH1Content,
+  tableContent,
   videoContent,
 } from "./content";
 import {
@@ -173,6 +174,45 @@ describe("@bond-london/graphcms-rich-text", () => {
               <td>
                 <p>
                   Row 1 - Col 2
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    `);
+  });
+
+  it("should render a table", () => {
+    const { container } = render(<RichText content={tableContent} />);
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <p>
+                  Row 1 - Header 1
+                </p>
+              </th>
+              <th>
+                <p>
+                  Row 1 - Header 2
+                </p>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <p>
+                  Row 2 - Col 1
+                </p>
+              </td>
+              <td>
+                <p>
+                  Row 2 - Col 2
                 </p>
               </td>
             </tr>

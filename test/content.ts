@@ -142,6 +142,86 @@ export const emptyContent: CleanedRTF = [
   },
 ];
 
+export const tableContent: CleanedRTF = [
+  {
+    type: "table",
+    children: [
+      {
+        type: "table_head",
+        children: [
+          {
+            type: "table_row",
+            children: [
+              {
+                type: "table_header_cell",
+                children: [
+                  {
+                    type: "paragraph",
+                    children: [
+                      {
+                        text: "Row 1 - Header 1",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                type: "table_header_cell",
+                children: [
+                  {
+                    type: "paragraph",
+                    children: [
+                      {
+                        text: "Row 1 - Header 2",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        type: "table_body",
+        children: [
+          {
+            type: "table_row",
+            children: [
+              {
+                type: "table_cell",
+                children: [
+                  {
+                    type: "paragraph",
+                    children: [
+                      {
+                        text: "Row 2 - Col 1",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                type: "table_cell",
+                children: [
+                  {
+                    type: "paragraph",
+                    children: [
+                      {
+                        text: "Row 2 - Col 2",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+];
+
 export const simpleH1Content: CleanedRTF = [
   {
     type: "heading-one",

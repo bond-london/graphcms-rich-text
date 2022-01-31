@@ -58,6 +58,7 @@ export interface NodeRenderer {
   table_head: DefaultNodeRenderer;
   table_body: DefaultNodeRenderer;
   table_row: DefaultNodeRenderer;
+  table_header_cell: DefaultNodeRenderer;
   table_cell: DefaultNodeRenderer;
   blockquote: DefaultNodeRenderer;
   code_block: DefaultNodeRenderer;

@@ -21,6 +21,7 @@ export const elementKeys: { [key: string]: keyof NodeRenderer } = {
   table_head: "table_head",
   table_body: "table_body",
   table_row: "table_row",
+  table_header_cell: "table_header_cell",
   table_cell: "table_cell",
   "block-quote": "blockquote",
   paragraph: "p",

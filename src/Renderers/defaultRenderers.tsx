@@ -39,6 +39,7 @@ export const defaultRenderers: NodeRenderer = {
   table_head: (props) => <DefaultRenderer {...props} element="thead" />,
   table_body: (props) => <DefaultRenderer {...props} element="tbody" />,
   table_row: (props) => <DefaultRenderer {...props} element="tr" />,
+  table_header_cell: (props) => <DefaultRenderer {...props} element="th" />,
   table_cell: (props) => <DefaultRenderer {...props} element="td" />,
   blockquote: (props) => <DefaultRenderer {...props} element="blockquote" />,
   code_block: (props) => <DefaultRenderer {...props} element="pre" />,
