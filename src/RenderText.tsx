@@ -31,5 +31,9 @@ export const RenderText: React.FC<NodeRendererProps<Text>> = ({
     element = <Code {...rest}>{element}</Code>;
   }
 
+  if (text === "<br>") {
+    return <br />;
+  }
+
   return <>{element}</>;
 };
