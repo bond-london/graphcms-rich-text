@@ -1,6 +1,11 @@
 
 
-### [1.1.3](https://github.com/bond-london/graphcms-rich-text/compare/v1.1.1...v1.1.3) (2022-03-10)
+### [1.1.4](https://github.com/bond-london/graphcms-rich-text/compare/v1.1.3...v1.1.4) (2022-03-24)
+
+
+### Features
+
+* support line break ([9be491b](https://github.com/bond-london/graphcms-rich-text/commit/9be491b9d5ee46d65f814f4f1c7a9972bb128484))### [1.1.3](https://github.com/bond-london/graphcms-rich-text/compare/v1.1.1...v1.1.3) (2022-03-10)
 
 
 ### Features
