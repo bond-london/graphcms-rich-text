@@ -1,6 +1,18 @@
 
 
-### [1.1.4](https://github.com/bond-london/graphcms-rich-text/compare/v1.1.3...v1.1.4) (2022-03-24)
+## [1.2.0](https://github.com/bond-london/graphcms-rich-text/compare/v1.1.4...v1.2.0) (2022-04-05)
+
+
+### Features
+
+* cleaning has moved to the source ([3db3f85](https://github.com/bond-london/graphcms-rich-text/commit/3db3f85335846566614f71476b58449bb167ab9d))
+* upgrade packages ([4494e65](https://github.com/bond-london/graphcms-rich-text/commit/4494e65df1ef61033d390e18f07d5302012eeedb))
+
+
+### Bug Fixes
+
+* remove empty content tests ([6dbc1e1](https://github.com/bond-london/graphcms-rich-text/commit/6dbc1e1f7018baafc5487c050f7cf725bcb8ece5))
+* update tests ([6aa803e](https://github.com/bond-london/graphcms-rich-text/commit/6aa803ed426e48eadcc19598f4de346b15bea42e))### [1.1.4](https://github.com/bond-london/graphcms-rich-text/compare/v1.1.3...v1.1.4) (2022-03-24)
 
 
 ### Features
