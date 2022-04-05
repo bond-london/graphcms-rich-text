@@ -8,7 +8,6 @@ import { render } from "@testing-library/react";
 import {
   defaultContent as content,
   embedAssetContent,
-  emptyContent,
   iframeContent,
   imageContent,
   inlineContent,
