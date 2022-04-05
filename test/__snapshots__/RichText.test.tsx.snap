@@ -106,27 +106,6 @@ exports[`@bond-london/graphcms-rich-text renders video 1`] = `
 </div>
 `;
 
-exports[`@bond-london/graphcms-rich-text should render empty text spaces 1`] = `
-<div>
-  <p>
-    Sweet black 
-    <b>
-      cap
-    </b>
-    <u>
-      with
-    </u>
-    <i>
-      embroidered
-    </i>
-    <b>
-      GraphCMS
-    </b>
-     logo.
-  </p>
-</div>
-`;
-
 exports[`custom embeds and assets should render embed video, image, and audio assets 1`] = `
 <div>
   <span

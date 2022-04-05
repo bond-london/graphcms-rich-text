@@ -6,8 +6,6 @@ import React from "react";
 import { render } from "@testing-library/react";
 
 import {
-  cleanupResult,
-  cleanupSrc,
   defaultContent as content,
   embedAssetContent,
   emptyContent,
@@ -20,8 +18,6 @@ import {
   videoContent,
 } from "./content";
 import {
-  cleanupRTF,
-  cleanupRTFContent,
   CustomEmbedRendererProps,
   DefaultRenderer,
   RichText,
@@ -41,16 +37,6 @@ describe("@bond-london/graphcms-rich-text", () => {
         </p>
       </div>
     `);
-  });
-
-  it("cleans up empty content ok", () => {
-    const cleanedRtf = cleanupRTF(cleanupSrc);
-    expect(cleanedRtf).toMatchObject(cleanupResult);
-  });
-
-  it("cleans up empty content node better", () => {
-    const cleanedRtf = cleanupRTFContent(cleanupSrc);
-    expect(cleanedRtf).toMatchObject(cleanupResult);
   });
 
   it("renders content with custom className", () => {
@@ -109,76 +95,6 @@ describe("@bond-london/graphcms-rich-text", () => {
         <p>
           Hello World!
         </p>
-      </div>
-    `);
-  });
-
-  it("renders content correctly if received a object with children", () => {
-    const contentObject: RTFContent = {
-      children: [
-        {
-          type: "paragraph",
-          children: [
-            {
-              bold: true,
-              text: "Hello World!",
-            },
-          ],
-        },
-      ],
-    };
-
-    const { container } = render(
-      <RichText content={cleanupRTFContent(contentObject)} />
-    );
-
-    expect(container).toMatchInlineSnapshot(`
-      <div>
-        <p>
-          <b>
-            Hello World!
-          </b>
-        </p>
-      </div>
-    `);
-  });
-
-  it("should not render elements if received a object with empty children", () => {
-    const { container } = render(<RichText content={emptyContent} />);
-
-    expect(container).toMatchInlineSnapshot(`
-      <div>
-        <h2>
-          <a
-            href="https://graphcms.com"
-          >
-            Testing Link
-          </a>
-        </h2>
-        <h2>
-          <a
-            href="https://graphcms.com"
-          >
-            Link
-          </a>
-           2
-        </h2>
-        <table>
-          <tbody>
-            <tr>
-              <td>
-                <p>
-                  Row 1 - Col 1
-                </p>
-              </td>
-              <td>
-                <p>
-                  Row 1 - Col 2
-                </p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     `);
   });
@@ -493,29 +409,6 @@ describe("@bond-london/graphcms-rich-text", () => {
     const { container } = render(<RichText content={content} />);
 
     expect(container).toHaveTextContent("<Test />");
-  });
-
-  it("should render empty text spaces", () => {
-    const content: RTFContent = [
-      {
-        type: "paragraph",
-        children: [
-          { text: "Sweet black " },
-          { bold: true, text: "cap" },
-          { text: " " },
-          { text: "with", underline: true },
-          { text: " " },
-          { text: "embroidered", italic: true },
-          { text: " " },
-          { bold: true, text: "GraphCMS" },
-          { text: " logo." },
-        ],
-      },
-    ];
-
-    const { container } = render(<RichText content={content} />);
-
-    expect(container).toMatchSnapshot();
   });
 });
 
