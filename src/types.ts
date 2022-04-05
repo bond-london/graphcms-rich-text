@@ -80,7 +80,6 @@ export interface BaseRendererProps {
   context?: unknown;
   disabledElements?: ElementTypeMap;
   classNameOverrides?: ClassNameOverrides;
-  removeEmptyElements?: ElementTypeMap;
   renderDisabledElement?: (
     elementName: string,
     htmlElementName: keyof NodeRenderer

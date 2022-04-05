@@ -2,14 +2,10 @@
 import React, { useMemo } from "react";
 import {
   ClassNameOverrides,
-  cleanupRTFContent,
-  defaultRemoveEmpty,
   defaultRenderers,
-  ElementTypeMap,
   NodeRenderer,
   RealRTFProps,
   RichText,
-  RTFProps,
 } from ".";
 
 const headingClasses: (keyof ClassNameOverrides)[] = [
@@ -28,7 +24,6 @@ export const RealRTF: React.FC<RealRTFProps> = ({
   className,
   fixedParagraphClassName,
   fixedHeadingClassName,
-  removeEmptyElements,
   renderers,
   ...rest
 }) => {
@@ -53,11 +48,6 @@ export const RealRTF: React.FC<RealRTFProps> = ({
     fixedHeadingClassName,
   ]);
 
-  const realRemoveEmptyElements: ElementTypeMap = useMemo(
-    () => ({ ...defaultRemoveEmpty, ...removeEmptyElements }),
-    [removeEmptyElements]
-  );
-
   const realRenderers: NodeRenderer = useMemo(
     () => ({ ...defaultRenderers, ...projectRenderers, ...renderers }),
     [projectRenderers, renderers]
@@ -69,21 +59,7 @@ export const RealRTF: React.FC<RealRTFProps> = ({
         {...rest}
         classNameOverrides={realClassNameOverrides}
         renderers={realRenderers}
-        removeEmptyElements={realRemoveEmptyElements}
       />
     </div>
   );
-};
-
-export const CoreRTF: React.FC<RTFProps> = ({ content, ...rest }) => {
-  const cleanedRTF = useMemo(() => {
-    if (content) {
-      return cleanupRTFContent(content);
-    }
-  }, [content]);
-
-  if (!cleanedRTF) {
-    return null;
-  }
-  return <RealRTF content={cleanedRTF} {...rest} />;
 };
