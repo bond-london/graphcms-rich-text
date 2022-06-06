@@ -1,5 +1,12 @@
 
 
+## [1.3.1](https://github.com/bond-london/graphcms-rich-text/compare/v1.3.0...v1.3.1) (2022-06-06)
+
+
+### Bug Fixes
+
+* some more graphql fixes ([0fda2b6](https://github.com/bond-london/graphcms-rich-text/commit/0fda2b6cb8fb9de6dacc2c1c4988282aaa38bac0))
+
 ## [1.3.0](https://github.com/bond-london/graphcms-rich-text/compare/v1.2.1...v1.3.0) (2022-06-06)
 
 ### [1.2.1](https://github.com/bond-london/graphcms-rich-text/compare/v1.2.0...v1.2.1) (2022-06-06)
