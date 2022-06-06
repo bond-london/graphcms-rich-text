@@ -29,7 +29,7 @@ export function getCleanedRTF(
   node: GenericRichTextNode | undefined | null
 ): CleanedRTF | undefined {
   if (node) {
-    return node.cleaned;
+    return node.cleaned as CleanedRTF;
   }
 }
 

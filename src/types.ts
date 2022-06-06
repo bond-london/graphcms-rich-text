@@ -26,7 +26,7 @@ export interface GenericRichTextNode {
   readonly text?: string;
   readonly json?: RTFContent;
   readonly references?: RTFReferences;
-  readonly cleaned?: CleanedRTF;
+  readonly cleaned?: unknown;
 }
 
 export interface AssetRenderer {
