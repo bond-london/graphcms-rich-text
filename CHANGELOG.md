@@ -1,5 +1,7 @@
 
 
+## [1.3.0](https://github.com/bond-london/graphcms-rich-text/compare/v1.2.1...v1.3.0) (2022-06-06)
+
 ### [1.2.1](https://github.com/bond-london/graphcms-rich-text/compare/v1.2.0...v1.2.1) (2022-06-06)
 
 
