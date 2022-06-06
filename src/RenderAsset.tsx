@@ -1,8 +1,10 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { AssetReference } from "@graphcms/rich-text-types";
 import { EmbedNodeRendererProps } from ".";
 
-export const RenderAsset: React.FC<EmbedNodeRendererProps> = (props) => {
+export const RenderAsset: React.FC<
+  PropsWithChildren<EmbedNodeRendererProps>
+> = (props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { nodeId, nodeType, children: _unusedChildren, ...rest } = props;
   const { references, renderers } = rest;
