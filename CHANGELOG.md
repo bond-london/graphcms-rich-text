@@ -1,6 +1,11 @@
 
 
-## [1.2.0](https://github.com/bond-london/graphcms-rich-text/compare/v1.1.4...v1.2.0) (2022-04-05)
+### [1.2.1](https://github.com/bond-london/graphcms-rich-text/compare/v1.2.0...v1.2.1) (2022-06-06)
+
+
+### Features
+
+* allow null in parameters ([86952af](https://github.com/bond-london/graphcms-rich-text/commit/86952af603e27a59371c2cd9fbfea25ee668bbd0))## [1.2.0](https://github.com/bond-london/graphcms-rich-text/compare/v1.1.4...v1.2.0) (2022-04-05)
 
 
 ### Features
