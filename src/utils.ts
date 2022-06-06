@@ -26,7 +26,7 @@ export function rtfFromText(text: string): CleanedRTF {
 }
 
 export function getCleanedRTF(
-  node: GenericRichTextNode | undefined
+  node: GenericRichTextNode | undefined | null
 ): CleanedRTF | undefined {
   if (node) {
     return node.cleaned;
@@ -34,7 +34,7 @@ export function getCleanedRTF(
 }
 
 export function getRTFReferences(
-  node: GenericRichTextNode | undefined
+  node: GenericRichTextNode | undefined | null
 ): RTFReferences | undefined {
   return node?.references;
 }
