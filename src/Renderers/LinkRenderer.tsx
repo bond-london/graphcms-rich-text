@@ -1,5 +1,5 @@
 import React from "react";
-import { LinkNodeRendererProps } from "..";
+import { EmbedNodeRendererProps, LinkNodeRendererProps, RenderEmbed } from "..";
 
 export const LinkRenderer: React.FC<LinkNodeRendererProps> = (props) => {
   const {
@@ -14,6 +14,15 @@ export const LinkRenderer: React.FC<LinkNodeRendererProps> = (props) => {
     role,
     children,
   } = props;
+
+  if (props.nodeType) {
+    return (
+      <RenderEmbed
+        {...(props as unknown as EmbedNodeRendererProps)}
+        isInline={true}
+      />
+    );
+  }
   const aProps: React.AnchorHTMLAttributes<HTMLAnchorElement> = {
     rel,
     id,

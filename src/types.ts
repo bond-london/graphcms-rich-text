@@ -160,7 +160,9 @@ export type DefaultNodeRenderer = (
 
 export interface LinkNodeRendererProps
   extends DefaultNodeRendererProps,
-    Partial<LinkProps> {}
+    Partial<LinkProps> {
+  nodeType: string;
+}
 
 export type LinkNodeRenderer = (props: LinkNodeRendererProps) => JSX.Element;
 

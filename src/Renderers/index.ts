@@ -1,11 +1,13 @@
 import { ClassNameOverrides } from "..";
 
 export * from "./defaultRenderers";
+export * from "./AudioRenderer";
 export * from "./ClassRenderer";
 export * from "./DefaultRenderer";
-export * from "./LinkRenderer";
+export * from "./EmbedRenderer";
+export * from "./IFrameRenderer";
 export * from "./ImageRenderer";
-export * from "./AudioRenderer";
+export * from "./LinkRenderer";
 export * from "./VideoRenderer";
 
 export function calculateClassName(
