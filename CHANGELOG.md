@@ -1,5 +1,12 @@
 
 
+## [1.4.0](https://github.com/bond-london/graphcms-rich-text/compare/v1.3.1...v1.4.0) (2022-06-30)
+
+
+### Features
+
+* support link embedding ([da12431](https://github.com/bond-london/graphcms-rich-text/commit/da12431efaab01c4ce5ad077a233b47174e43e0d))
+
 ## [1.3.1](https://github.com/bond-london/graphcms-rich-text/compare/v1.3.0...v1.3.1) (2022-06-06)
 
 
